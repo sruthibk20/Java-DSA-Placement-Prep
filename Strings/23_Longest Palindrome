@@ -1,0 +1,28 @@
+
+class Solution {
+    public int longestPalindrome(String s) {
+
+        int[] common = new int[128];
+        int len = 0;
+        boolean odd = false;
+
+        for (char ch : s.toCharArray()) {
+            common[ch]++;
+        }
+
+        for (int i = 0; i < 128; i++) {
+            if (common[i] % 2 != 0) {
+                common[i]--;
+                odd = true;
+            }
+
+            len += common[i];
+        }
+
+        if (odd) {
+            len++;
+        }
+
+        return len;
+    }
+}
